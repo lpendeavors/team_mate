@@ -1,0 +1,62 @@
+{
+  "app_title": "TeamMate",
+  "app_branding": "A Drench House App",
+
+  "login_title": "Login",
+  "login_subtitle": "Sign in to continue",
+  "exit_login": "Exit login",
+  "exit_login_message": "Are you sure you want to exit?",
+  "login_success": "Login successful",
+  "existing_account": "Existing member? Sign In",
+  "register_title": "Register to continue",
+  "new_account": "New member? Sign up",
+  "exit_register": "Exit register",
+  "exit_register_message": "Are you sure you want to exit?",
+  "register_success": "Registration successful",
+
+  "forgot_password": "Forgot password?",
+  "forgot_password_title": "Forgot Password",
+  "exit_send_email_message": "Exit reset password",
+  "invalid_email_address": "Invalid email address",
+  "send_password_reset_email_success": "Password email sent successfully",
+  "user_not_found_error": "User not found",
+  "send_email": "Send Email",
+
+  "logout_success": "",
+  "logout_error": "",
+
+  "exit_app": "",
+  "sure_want_to_exit_app": "",
+
+  "no": "No",
+  "exit": "Exit",
+  "email": "Email Address",
+  "password": "Password",
+  "register": "Register",
+  "full_name": "Full Name",
+
+  "error_occurred": "An error occurred",
+  "network_error": "A network error has occurred",
+  "too_many_requests_error": "Too many requests",
+  "wrong_password_error": "The password is invalid",
+  "invalid_email_error": "The email address is not in a valid format",
+  "email_already_in_use_error": "The email address is already in use",
+  "weak_password_error": "The password is too weak",
+  "user_disabled_error": "This user account has been disabled",
+  "invalid_credential_error": "The credential for this user is invalid",
+  "account_exists_with_different_credential_error": "This account already exists with a different credential",
+  "operation_not_allowed_error": "This operation is not allowed",
+  "google_sign_in_cancelled_error": "The google sign in has been cancelled",
+
+  "tasks_page_title": "Tasks",
+
+  "teams_page_title": "Teams",
+  "new_team_title": "New Team",
+  "new_team_hint": "Team name",
+  "save_team": "Save",
+  "teams_list_empty": "Start your first team",
+
+  "profile_page_title": "Profile",
+  "about_page_title": "About",
+  "logout_page_title": "Logout"
+}

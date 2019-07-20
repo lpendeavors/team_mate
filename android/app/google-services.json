@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "332694622314",
+    "firebase_url": "https://teammate-dh.firebaseio.com",
+    "project_id": "teammate-dh",
+    "storage_bucket": "teammate-dh.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:332694622314:android:244f919e449e7214",
+        "android_client_info": {
+          "package_name": "com.larryeparks.team_mate"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "332694622314-n4o50fnkri6n15tp1llgivfml9o7aahn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDWYJh9aW-V6L_fjCi_UyA-x5Tdz_3a3kY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "332694622314-n4o50fnkri6n15tp1llgivfml9o7aahn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
