@@ -7,17 +7,19 @@ import 'package:team_mate/generated/i18n.dart';
 import 'package:team_mate/widgets/tm_navigation_drawer.dart';
 import 'package:team_mate/screens/tasks/tasks_bloc.dart';
 import 'package:team_mate/screens/tasks/tasks_page.dart';
-import 'package:team_mate/screens/tasks/tasks_state.dart';
 import 'package:team_mate/screens/teams/teams_bloc.dart';
 import 'package:team_mate/screens/teams/teams_page.dart';
-import 'package:team_mate/screens/teams/teams_state.dart';
 import 'package:team_mate/screens/team_details/team_details_bloc.dart';
 import 'package:team_mate/screens/team_details/team_details_page.dart';
-import 'package:team_mate/screens/team_details/team_details_state.dart';
+import 'package:team_mate/screens/project_add_edit/project_add_edit_bloc.dart';
+import 'package:team_mate/screens/project_add_edit/project_add_edit_page.dart';
+import 'package:team_mate/screens/project_details/project_details_bloc.dart';
+import 'package:team_mate/screens/project_details/project_details_page.dart';
+import 'package:team_mate/screens/task_add_edit/task_add_edit_bloc.dart';
+import 'package:team_mate/screens/task_add_edit/task_add_edit_page.dart';
 import 'package:team_mate/screens/forgot_password/forgot_password_bloc.dart';
 import 'package:team_mate/screens/forgot_password/forgot_password_page.dart';
 import 'package:team_mate/screens/login/login_page.dart';
-import 'package:team_mate/screens/register/register_page.dart';
 import 'package:team_mate/user_bloc/user_bloc.dart';
 import 'package:team_mate/user_bloc/user_login_state.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -90,6 +92,68 @@ class MyApp extends StatelessWidget {
           );
         },
         settings: routerSettings,
+      );
+    }
+
+    if (routerSettings.name == '/project_add_edit') {
+      return MaterialPageRoute(
+        builder: (context) {
+          Map<String, String> args = routerSettings.arguments as Map<String, String>;
+          return ProjectAddEditPage(
+            userBloc: BlocProvider.of<UserBloc>(context),
+            initProjectAddEditBloc: () {
+              return ProjectAddEditBloc(
+                userBloc: BlocProvider.of<UserBloc>(context),
+                projectRepository: Injector.of(context).projectRepository,
+                priceFormat: Injector.of(context).priceFormat,
+                projectId: args['projectId'],
+                teamId: args['teamId'],
+              );
+            },
+          );
+        },
+        settings: routerSettings,
+      );
+    }
+
+    if (routerSettings.name == '/project_details') {
+      return MaterialPageRoute(
+        builder: (context) {
+          String args = routerSettings.arguments as String;
+          return ProjectDetailsPage(
+            userBloc: BlocProvider.of<UserBloc>(context),
+            initProjectDetailsBloc: () {
+              return ProjectDetailsBloc(
+                userBloc: BlocProvider.of<UserBloc>(context),
+                projectRepository: Injector.of(context).projectRepository,
+                taskRepository: Injector.of(context).taskRepository,
+                priceFormat: Injector.of(context).priceFormat,
+                projectId: args,
+              );
+            },
+          );
+        },
+        settings: routerSettings,
+      );
+    }
+
+    if (routerSettings.name == '/task_add_edit') {
+      return MaterialPageRoute(
+        builder: (context) {
+          Map<String, String> args = routerSettings.arguments as Map<String, String>;
+          return TaskAddEditPage(
+            userBloc: BlocProvider.of<UserBloc>(context),
+            initTaskAddEditBloc: () {
+              return TaskAddEditBloc(
+                userBloc: BlocProvider.of<UserBloc>(context),
+                taskRepository: Injector.of(context).taskRepository,
+                priceFormat: Injector.of(context).priceFormat,
+                projectId: args['projectId'],
+                taskId: args['taskId'],
+              );
+            },
+          );
+        },
       );
     }
   };

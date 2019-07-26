@@ -24,4 +24,8 @@ abstract class FirebaseUserRepository {
   Future<void> sendPasswordResetEmail(String email);
 
   Stream<UserEntity> getUserById({@required String uid});
+
+  Stream<List<UserEntity>> getUsersByTeam({@required String teamId});
+
+  Stream<List<UserEntity>> getUsersByProject({@required String projectId});
 }

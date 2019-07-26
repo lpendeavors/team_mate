@@ -34,6 +34,31 @@ class FirebaseUserRepositoryImpl implements FirebaseUserRepository {
         (snapshot) => snapshot.exists ? UserEntity.fromDocumentSnapshot(snapshot) : null);
   }
 
+  Future<List<UserEntity>> _getMultipleUsersByTeam(String teamId) async {
+    var teamDoc = await  _firestore.document('teams/$teamId').get();
+
+    var uids = teamDoc['team_members_ids'];
+    List<UserEntity> users = [];
+
+    TransactionHandler transactionHandler = (transaction) async {
+      return uids.forEach((uid) async {
+        var snapshot = await _firestore.document('users/$uid').get();
+        users.add(UserEntity.fromDocumentSnapshot(snapshot));
+      });
+    };
+
+    await _firestore.runTransaction(transactionHandler);
+
+    return users;
+  }
+
+  Future<List<UserEntity>> _getMultipleUsersByProject(String projectId) async {
+    var projectDoc = await _firestore.document('projects/$projectId').get();
+    var teamId = projectDoc['team_id'];
+
+    return _getMultipleUsersByTeam(teamId);
+  }
+
   @override
   Future<void> signOut() async {
     await _firebaseAuth.signOut();
@@ -121,4 +146,14 @@ class FirebaseUserRepositoryImpl implements FirebaseUserRepository {
 
   @override
   Stream<UserEntity> getUserById({String uid}) => _getUserByUid$(uid);
+
+  @override
+  Stream<List<UserEntity>> getUsersByTeam({String teamId}) {
+    return _getMultipleUsersByTeam(teamId).asStream();
+  }
+
+  @override
+  Stream<List<UserEntity>> getUsersByProject({String projectId}) {
+    return _getMultipleUsersByProject(projectId).asStream();
+  }
 }

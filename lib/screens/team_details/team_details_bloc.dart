@@ -99,7 +99,7 @@ class TeamDetailsBloc implements BaseBloc {
       message$
         .where((message) => message is TeamMemberAddedMessageError || message is TeamProjectAddedMessageError)
         .startWith(null),
-        (details, error) {
+      (details, error) {
           print(
             '[DEBUG] emit latest state when error occurred $error projects=${details.projectItems.length},'
                 ' members=${details.memberItems.length}}'
@@ -145,14 +145,15 @@ class TeamDetailsBloc implements BaseBloc {
     }
 
     if (loginState is LoggedInUser) {
-      return Observable.zip2(
+      return Observable.zip3(
           teamRepository.teamById(teamId: teamId),
           projectRepository.projectsByTeam(teamId: teamId),
-          (team, projects) {
-            var teamEntity = team as TeamEntity;
+          userRepository.getUsersByTeam(teamId: teamId),
+          (team, projects, members) {
             return _kInitialTeamDetailState.copyWith(
               teamDetails: _teamDetailEntityToItem(team),
               projectItems: _projectEntitiesToProjectItems(projects, priceFormat),
+              memberItems: _memberEntitiesToMemberItems(members, priceFormat),
               isLoading: false,
             );
           }
@@ -191,7 +192,7 @@ class TeamDetailsBloc implements BaseBloc {
       return ProjectItem(
         id: entity.id,
         name: entity.name,
-        dueDate: entity.dueDate.toString(),
+        dueDate: DateFormat.yMMMd().format(entity.dueDate.toDate()),
       );
     }).toList();
   }

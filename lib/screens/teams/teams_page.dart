@@ -109,9 +109,9 @@ class _TeamsPageState extends State<TeamsPage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     Icon(
-                      Icons.home,
+                      Icons.add,
                       size: 48,
-                      color: Theme.of(context).accentColor,
+                      color: Theme.of(context).primaryColorDark,
                     ),
                     Text(
                       S.of(context).teams_list_empty,

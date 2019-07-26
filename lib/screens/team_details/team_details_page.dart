@@ -5,8 +5,9 @@ import 'package:team_mate/widgets/root_scaffold.dart';
 import 'package:team_mate/generated/i18n.dart';
 import 'package:team_mate/user_bloc/user_bloc.dart';
 import 'package:team_mate/screens/team_details/team_details_bloc.dart';
-import 'package:team_mate/screens/team_details/team_details_bloc.dart';
 import 'package:team_mate/screens/team_details/team_details_state.dart';
+import 'package:team_mate/screens/team_details/widgets/team_projects_tab.dart';
+import 'package:team_mate/screens/team_details/widgets/team_members_tab.dart';
 import 'package:flutter/material.dart';
 
 enum TeamActions { addMember, addProject }
@@ -38,7 +39,7 @@ class _TeamDetailsPageState extends State<TeamDetailsPage> with SingleTickerProv
     _subscriptions = [
       widget.userBloc.loginState$
         .where((state) => state is Unauthenticated)
-        .listen((_) => Navigator.popUntil(context, ModalRoute.withName('/'))),
+        .listen((_) => Navigator.popUntil(context, ModalRoute.withName('/login'))),
       _teamDetailsBloc.message$.listen(_showMessageResult),
     ];
     _tabController = TabController(vsync: this, length: 2);
@@ -86,11 +87,16 @@ class _TeamDetailsPageState extends State<TeamDetailsPage> with SingleTickerProv
                 onSelected: (TeamActions result) {
                   switch (result) {
                     case TeamActions.addMember:
-                      print('add member');
+                      showDialog(context: context);
                       break;
                     case TeamActions.addProject:
-                      print('add project');
-                      break;
+                      Navigator.of(context).pushNamed(
+                        '/project_add_edit',
+                        arguments: <String, String>{
+                          'teamId': _teamDetailsBloc.teamDetailsState$.value.teamDetails.id,
+                          'projectId': null,
+                        }
+                      );
                   }
                 },
                 itemBuilder: (BuildContext context) => [
@@ -143,12 +149,12 @@ class _TeamDetailsPageState extends State<TeamDetailsPage> with SingleTickerProv
                   TabBarView(
                     controller: _tabController,
                     children: <Widget>[
-                      Center(
-                        child: Text('test'),
+                      TeamMateProjectsTab(
+                        projects: snapshot.data.projectItems,
                       ),
-                      Center(
-                        child: Text('test2'),
-                      ),
+                      TeamMateMembersTab(
+                        members: snapshot.data.memberItems,
+                      )
                     ],
                   ),
                 ],

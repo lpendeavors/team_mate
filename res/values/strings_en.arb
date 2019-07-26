@@ -34,6 +34,9 @@
   "password": "Password",
   "register": "Register",
   "full_name": "Full Name",
+  "project_name": "Name",
+  "project_description": "Description",
+  "project_due_date": "Due Date",
 
   "error_occurred": "An error occurred",
   "network_error": "A network error has occurred",
@@ -55,6 +58,24 @@
   "new_team_hint": "Team name",
   "save_team": "Save",
   "teams_list_empty": "Start your first team",
+
+
+  "new_project": "New Project",
+  "edit_project": "Edit Project",
+  "exit_project_add_edit": "Going back will erase unsaved changes!",
+  "save_project": "Save Project",
+  "projects_list_empty": "Start your first project",
+  "members_list_empty": "Add your first member",
+
+  "task_description": "Description",
+  "task_title": "Title",
+  "task_due_date": "Due Date",
+  "task_assign_to": "Assign To",
+  "new_task": "New Task",
+  "edit_task": "Edit Task",
+  "exit_task_add_edit": "Going back will erase unsaved changes",
+  "save_task": "Save Task",
+  "tasks_list_empty": "Start your first task",
 
   "profile_page_title": "Profile",
   "about_page_title": "About",

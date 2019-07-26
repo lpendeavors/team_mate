@@ -13,29 +13,13 @@ class TaskEntity implements FirebaseModel {
   final String documentID;
   final String title;
   final String description;
-  @JsonKey(
-    fromJson: documentReferenceFromJson,
-    toJson: documentReferenceToJson,
-  )
-  final DocumentReference project;
-  @JsonKey(
-    name: 'assigned_to',
-    fromJson: documentReferenceFromJson,
-    toJson: documentReferenceToJson,
-  )
-  final DocumentReference assignedTo;
-  @JsonKey(
-    name: 'created_by',
-    fromJson: documentReferenceFromJson,
-    toJson: documentReferenceToJson,
-  )
-  final DocumentReference createdBy;
-  @JsonKey(
-    name: 'modified_by',
-    fromJson: documentReferenceFromJson,
-    toJson: documentReferenceToJson,
-  )
-  final DocumentReference modifiedBy;
+  final String project;
+  @JsonKey(name: 'assigned_to')
+  final String assignedTo;
+  @JsonKey(name: 'created_by')
+  final String createdBy;
+  @JsonKey(name: 'modified_by')
+  final String modifiedBy;
   @JsonKey(
     name: 'created_on',
     fromJson: timestampFromJson,
